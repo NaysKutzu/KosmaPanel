@@ -1,0 +1,30 @@
+{
+    "name": "mythicalsystems/kosma-panel",
+    "description": "A free open source web hosting panel with multi-node support.",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "mythicalsystems",
+        "kosmapanel",
+        "wings",
+        "nayskutzu"
+    ],
+    "authors": [
+        {
+            "name": "NaysKutzu",
+            "email": "nayskutuz@mythicalsystems.me",
+            "role": "Developer",
+            "homepage": "https://github.com/NaysKutzu"
+        },
+        {
+            "name": "Nyxalis",
+            "email": "nyxalis@mythicalsystems.me",
+            "role": "Developer",
+            "homepage": "https://github.com/Nyxalis"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.0.0"
+    }
+}
