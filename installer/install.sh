@@ -13,7 +13,9 @@ function error() {
     rm /etc/apt/sources.list.d/redis.list
     apt update 
     rm /usr/local/bin/composer 
+    rm /usr/share/keyrings/redis-archive-keyring.gpg
     echo "[ERROR] $1"
+    echo "Failed to install KosmaPanel Please make sure you contact support at: https://discord.gg/7BZTmSK2D8"
     exit 1
 }
 
@@ -109,6 +111,7 @@ function install_dotnet() {
     wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh || error "Failed to download dotnet installer script"
     chmod +x ./dotnet-install.sh || error "Failed to download dotnet installer script"
     ./dotnet-install.sh --channel 7.0 || error "Failed to download dotnet installer script"
+    export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools || error "Failed to add dotnet to path"
 }
 
 function install_composer_packages() {
