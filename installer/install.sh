@@ -182,6 +182,9 @@ fi
 
 # Download project files from Git
 download_project_files
+
+install_dotnet
+
 apt update
 apt upgrade -y
 service mariadb start
@@ -198,7 +201,5 @@ create_ssl_certificates
 
 # Configure webserver
 configure_webserver
-
-install_dotnet
 
 echo "Installation completed successfully!"
