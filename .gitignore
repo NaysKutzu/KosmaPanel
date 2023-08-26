@@ -5,6 +5,7 @@
 /public/pma/tmp/
 config.yml
 /cli/config.yml
-/cli/migrations
 /.vscode/
 /logs/
+/cli/migrate/
+migrates.ini

@@ -99,6 +99,7 @@ function configapp() {
     ./KosmaPanel -generate-config
     ./KosmaPanel -config-database
     ./KosmaPanel -migrate-database-now
+    ./KosmaPanel -key-generate
 }
 
 # Function to set correct permissions

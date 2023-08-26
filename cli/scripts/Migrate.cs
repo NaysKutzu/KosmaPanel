@@ -1,5 +1,8 @@
 using MySqlConnector;
 using YamlDotNet.Serialization;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KosmaPanel
 {
@@ -9,9 +12,12 @@ namespace KosmaPanel
 #pragma warning disable
         public static string connectionString;
 #pragma warning restore
+
+        private const string MigrationConfigFilePath = "migrates.ini";
+
         public void Now()
         {
-            if (fm.MFolderExists() == true)
+            if (fm.MFolderExists())
             {
                 ExecuteScripts();
             }
@@ -20,6 +26,7 @@ namespace KosmaPanel
                 Program.logger.Log(LogType.Error, "It looks like you are missing some important core files; please redownload KosmaPanel!!");
             }
         }
+
         private void getConnection()
         {
             if (fm.ConfigExists() == true)
@@ -44,6 +51,7 @@ namespace KosmaPanel
                 Program.logger.Log(LogType.Error, "It looks like the config file does not exist!");
             }
         }
+
         private void ExecuteScript(MySqlConnection connection, string scriptContent)
         {
             using (var command = new MySqlCommand(scriptContent, connection))
@@ -51,14 +59,18 @@ namespace KosmaPanel
                 command.ExecuteNonQuery();
             }
         }
+
         private void ExecuteScripts()
         {
             try
             {
                 getConnection();
+
                 string[] scriptFiles = Directory.GetFiles("migrate/", "*.sql")
                     .OrderBy(scriptFile => Convert.ToInt32(Path.GetFileNameWithoutExtension(scriptFile)))
                     .ToArray();
+
+                HashSet<string> migratedScripts = ReadMigratedScripts();
 
                 using (var connection = new MySqlConnection(connectionString))
                 {
@@ -67,17 +79,57 @@ namespace KosmaPanel
                     foreach (string scriptFile in scriptFiles)
                     {
                         string scriptContent = File.ReadAllText(scriptFile);
-                        Program.logger.Log(LogType.Info, "We executed: " + scriptFile);
+                        string scriptFileName = Path.GetFileName(scriptFile);
+
+                        if (migratedScripts.Contains(scriptFileName))
+                        {
+                            Program.logger.Log(LogType.Info, $"Script {scriptFileName} was already migrated. Skipping.");
+                            continue;
+                        }
+
+                        Program.logger.Log(LogType.Info, "Executing script: " + scriptFileName);
                         ExecuteScript(connection, scriptContent);
+
+                        migratedScripts.Add(scriptFileName);
+                        WriteMigratedScripts(migratedScripts);
                     }
 
                     connection.Close();
                 }
-
             }
             catch (Exception ex)
             {
-                Program.logger.Log(LogType.Error, "Sorry but the migration throws this error: " + ex.Message);
+                Program.logger.Log(LogType.Error, "Migration error: " + ex.Message);
+            }
+        }
+
+        private HashSet<string> ReadMigratedScripts()
+        {
+            HashSet<string> migratedScripts = new HashSet<string>();
+
+            if (File.Exists(MigrationConfigFilePath))
+            {
+                using (StreamReader reader = new StreamReader(MigrationConfigFilePath))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        migratedScripts.Add(line.Trim());
+                    }
+                }
+            }
+
+            return migratedScripts;
+        }
+
+        private void WriteMigratedScripts(HashSet<string> migratedScripts)
+        {
+            using (StreamWriter writer = new StreamWriter(MigrationConfigFilePath))
+            {
+                foreach (string scriptFileName in migratedScripts)
+                {
+                    writer.WriteLine(scriptFileName);
+                }
             }
         }
     }
