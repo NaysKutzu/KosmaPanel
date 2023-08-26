@@ -88,15 +88,21 @@ function create_ssl_certificates() {
     echo "Creating SSL certificate for domain: $domain"
 
     # HTTP challenge
-     certbot certonly --no-eff-email --register-unsafely-without-email --email "$EMAIL" --apache --agree-tos --non-interactive -d "$domain" || error "Failed to create SSL certificate"
+     certbot certonly --apache --non-interactive --agree-tos --register-unsafely-without-email -d "$domain" || error "Failed to create SSL certificate"
 
     echo "SSL certificate successfully created for domain: $domain"
 }
 
 function install_dotnet() {
+    cd || error "Failed to move to user home dir"
     wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh || error "Failed to download dotnet installer script"
     chmod +x ./dotnet-install.sh || error "Failed to download dotnet installer script"
     ./dotnet-install.sh --channel 7.0 || error "Failed to download dotnet installer script"
+}
+
+function install_composer_packages() {
+    cd /var/www/KosmaPanel || error "Failed to change directory to /var/www/KosmaPanel"
+    composer install --no-dev --optimize-autoloader || error "Failed to install composer required packages"
 }
 
 # Function to configure webserver
@@ -184,6 +190,8 @@ mariadb -e "CREATE USER 'KosmaPanel'@'127.0.0.1' IDENTIFIED BY '$mysql_password'
 
 # Set permissions on Panel files
 set_permissions
+
+install_composer_packages
 
 # Create SSL certificates
 create_ssl_certificates
