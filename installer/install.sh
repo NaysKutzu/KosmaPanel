@@ -2,6 +2,17 @@
 
 # Function to display error messages
 function error() {
+    mariadb -e "DROP DATABASE kosma_panel";
+    mariadb -e "DROP USER 'KosmaPanel'@'127.0.0.1';";
+    rm -r /var/www/KosmaPanel
+    rm /etc/apache2/sites-available/KosmaPanel.conf
+    rm /etc/apache2/sites-enabled/KosmaPanel.conf
+    rm /etc/apt/sources.list.d/mariadb.list
+    apt -y remove apache2* libapache2-mod-php8.2* certbot* php8.2* mariadb-server* redis* 
+    apt -y autoremove 
+    rm /etc/apt/sources.list.d/redis.list
+    apt update 
+    rm /usr/local/bin/composer 
     echo "[ERROR] $1"
     exit 1
 }
