@@ -88,7 +88,7 @@ function create_ssl_certificates() {
     echo "Creating SSL certificate for domain: $domain"
 
     # HTTP challenge
-     certbot certonly --no-eff-email --email "$EMAIL" --apache -d "$domain" || error "Failed to create SSL certificate"
+     certbot certonly --no-eff-email --register-unsafely-without-email --email "$EMAIL" --apache -d "$domain" || error "Failed to create SSL certificate"
 
     echo "SSL certificate successfully created for domain: $domain"
 }
@@ -170,9 +170,11 @@ fi
 
 # Download project files from Git
 download_project_files
-
+apt update
+apt upgrade -y
+service mariadb start
 # Create database and user
-mysql -e "CREATE USER 'KosmaPanel'@'127.0.0.1' IDENTIFIED BY '$mysql_password'; CREATE DATABASE kosma_panel; GRANT ALL PRIVILEGES ON kosma_panel.* TO 'KosmaPanel'@'127.0.0.1' WITH GRANT OPTION;" || error "Failed to create database and user"
+mariadb -e "CREATE USER 'KosmaPanel'@'127.0.0.1' IDENTIFIED BY '$mysql_password'; CREATE DATABASE kosma_panel; GRANT ALL PRIVILEGES ON kosma_panel.* TO 'KosmaPanel'@'127.0.0.1' WITH GRANT OPTION;" || error "Failed to create database and user"
 
 # Set permissions on Panel files
 set_permissions
