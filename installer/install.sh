@@ -93,6 +93,12 @@ function create_ssl_certificates() {
     echo "SSL certificate successfully created for domain: $domain"
 }
 
+function install_dotnet() {
+    wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh || error "Failed to download dotnet installer script"
+    chmod +x ./dotnet-install.sh || error "Failed to download dotnet installer script"
+    ./dotnet-install.sh --channel 7.0 || error "Failed to download dotnet installer script"
+}
+
 # Function to configure webserver
 function configure_webserver() {
     # Prompt for domain name
@@ -184,5 +190,7 @@ create_ssl_certificates
 
 # Configure webserver
 configure_webserver
+
+install_dotnet
 
 echo "Installation completed successfully!"
