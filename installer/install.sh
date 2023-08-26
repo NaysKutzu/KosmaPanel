@@ -89,6 +89,18 @@ function download_project_files() {
     cd /var/www/KosmaPanel || error "Failed to change directory to /var/www/KosmaPanel"
 }
 
+function pma_fix() {
+    cd /var/www/KosmaPanel/public/pma
+    chmod 777 tmp
+}
+
+function configapp() {
+    cd /var/www/KosmaPanel
+    ./KosmaPanel -generate-config
+    ./KosmaPanel -config-database
+    ./KosmaPanel -migrate-database-now
+}
+
 # Function to set correct permissions
 function set_permissions() {
     chown -R www-data:www-data /var/www/KosmaPanel/* || error "Failed to set permissions on Panel files"
@@ -210,6 +222,8 @@ set_permissions
 
 install_composer_packages
 
+pma_fix
+
 # Create SSL certificates
 create_ssl_certificates
 
@@ -217,3 +231,5 @@ create_ssl_certificates
 configure_webserver
 
 echo "Installation completed successfully!"
+
+configapp

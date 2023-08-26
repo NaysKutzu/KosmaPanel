@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 require '../vendor/autoload.php';
 
-use Atoro\Require\Router;
+use Kosma\Router;
 
 //Loading in the Routes with Prefixes
 Router::prefix('', function() {

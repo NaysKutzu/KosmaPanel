@@ -1,1 +1,10 @@
 /vendor/
+/cli/obj/
+/cli/bin/
+/cli/logs/
+/public/pma/tmp/
+config.yml
+/cli/config.yml
+/cli/migrations
+/.vscode/
+/logs/
