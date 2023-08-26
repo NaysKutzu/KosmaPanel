@@ -88,7 +88,7 @@ function create_ssl_certificates() {
     echo "Creating SSL certificate for domain: $domain"
 
     # HTTP challenge
-     certbot certonly --no-eff-email --register-unsafely-without-email --email "$EMAIL" --apache -d "$domain" || error "Failed to create SSL certificate"
+     certbot certonly --no-eff-email --register-unsafely-without-email --email "$EMAIL" --apache --agree-tos --non-interactive -d "$domain" || error "Failed to create SSL certificate"
 
     echo "SSL certificate successfully created for domain: $domain"
 }
