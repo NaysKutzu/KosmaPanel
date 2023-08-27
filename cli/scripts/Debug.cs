@@ -26,6 +26,7 @@ namespace KosmaPanel
                 {
                     yaml.Save(writer, false);
                 } 
+                Program.rmt.Remove(filePath);
                 Program.logger.Log(LogType.Info,"We updated the settings");
             }
             else
@@ -55,6 +56,7 @@ namespace KosmaPanel
                 {
                     yaml.Save(writer, false);
                 }
+                Program.rmt.Remove(filePath);
                 Program.logger.Log(LogType.Warning,"We updated the settings please make sure to not use this as a production environment");
             }
             else

@@ -112,10 +112,12 @@ namespace KosmaPanel
                 using (StreamReader reader = new StreamReader(MigrationConfigFilePath))
                 {
                     string line;
+                    #pragma warning disable
                     while ((line = reader.ReadLine()) != null)
                     {
                         migratedScripts.Add(line.Trim());
                     }
+                    #pragma warning restore
                 }
             }
 

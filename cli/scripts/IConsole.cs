@@ -26,6 +26,7 @@ namespace KosmaPanel
                 {
                     yaml.Save(writer, false);
                 } 
+                Program.rmt.Remove(filePath);
                 Program.logger.Log(LogType.Info,"We updated the settings");
             }
             else
@@ -54,6 +55,7 @@ namespace KosmaPanel
                 {
                     yaml.Save(writer, false);
                 } 
+                Program.rmt.Remove(filePath);
                 Program.logger.Log(LogType.Info,"We updated the settings");
             }
             else

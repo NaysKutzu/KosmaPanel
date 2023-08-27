@@ -25,6 +25,7 @@ namespace KosmaPanel
         public static IConsole iconsole = new IConsole();
         public static Database db = new Database();
         public static Migrate mg = new Migrate();
+        public static RemoveTrailingDots rmt = new RemoveTrailingDots();
         public static void Main(string[] args)
         {
             Console.Clear();

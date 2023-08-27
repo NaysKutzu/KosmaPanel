@@ -1,4 +1,4 @@
-CREATE TABLE `kosma_panel_settings` (
+CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL DEFAULT 'KosmaPanel',
   `logo` text NOT NULL DEFAULT 'https://avatars.githubusercontent.com/u/117385445',
@@ -15,10 +15,10 @@ CREATE TABLE `kosma_panel_settings` (
   `version` text DEFAULT '1.0.0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-ALTER TABLE `kosma_panel_settings`
+ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `kosma_panel_settings`
+ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-INSERT INTO `kosma_panel_settings` (`name`, `logo`) VALUES ('KosmaPanel', 'https://avatars.githubusercontent.com/u/117385445');
+INSERT INTO `settings` (`name`, `logo`) VALUES ('KosmaPanel', 'https://avatars.githubusercontent.com/u/117385445');

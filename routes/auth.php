@@ -2,11 +2,11 @@
 // Routes for /auth
 use Kosma\Router;
 
-Router::get('login', function() {  
+Router::get('login', function($e) {  
     require "../views/auth/login.php"; 
 }); 
 
-Router::get('register', function() {  
+Router::get('register?', function() {  
     require "../views/auth/register.php"; 
 }); 
 
