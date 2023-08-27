@@ -8,25 +8,25 @@
     "packages": [
         {
             "name": "mythicalsystems/php-router",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MythicalLTD/php-router.git",
-                "reference": "41fc385e71afb3bcacde88fe86c896fe8875a881"
+                "reference": "8190321cf094124e92eebf4945e001820858e10c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MythicalLTD/php-router/zipball/41fc385e71afb3bcacde88fe86c896fe8875a881",
-                "reference": "41fc385e71afb3bcacde88fe86c896fe8875a881",
+                "url": "https://api.github.com/repos/MythicalLTD/php-router/zipball/8190321cf094124e92eebf4945e001820858e10c",
+                "reference": "8190321cf094124e92eebf4945e001820858e10c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0.0"
+                "php": ">=6.0.0"
             },
             "type": "library",
             "autoload": {
                 "files": [
-                    "src/php-8.0-support.php"
+                    "src/php-6.0-support.php"
                 ],
                 "psr-0": {
                     "Router": "src"
@@ -53,14 +53,15 @@
             "description": "Minimal routing library",
             "homepage": "https://github.com/MythicalLTD/php-router",
             "keywords": [
-                "route",
-                "router",
-                "routing"
+                "mythicalsystems",
+                "nayskutzu",
+                "php-router",
+                "router"
             ],
             "support": {
-                "source": "https://github.com/MythicalLTD/php-router/tree/1.0.2"
+                "source": "https://github.com/MythicalLTD/php-router/tree/1.0.3"
             },
-            "time": "2023-08-27T16:16:15+00:00"
+            "time": "2023-08-27T16:23:31+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
