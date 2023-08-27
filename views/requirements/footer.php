@@ -20,3 +20,4 @@
 <script src="/assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
 <script src="/assets/js/MythicalGuard.js"></script>
 <script src="/assets/js/preloader.js"></script>
+<!-- Copyright Vuexy Dashboard Theme -->
