@@ -4,8 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f8e564c3222bec5ca8ba305217c9ff4",
+    "content-hash": "f2e0858efb9d36e50ffb7be70ddf3831",
     "packages": [
+        {
+            "name": "mythicalsystems/php-router",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MythicalLTD/php-router.git",
+                "reference": "7570be8f6928e9fad78fcf8b8da07cafc346df6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MythicalLTD/php-router/zipball/7570be8f6928e9fad78fcf8b8da07cafc346df6b",
+                "reference": "7570be8f6928e9fad78fcf8b8da07cafc346df6b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/php-8.0-support.php"
+                ],
+                "psr-0": {
+                    "Router": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NaysKutzu",
+                    "email": "nayskutzu@mythicalsystems.me",
+                    "homepage": "https://nayskutzu.xyz",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Emilio Cobos Álvarez",
+                    "email": "emiliocobos@usal.es",
+                    "homepage": "http://emiliocobos.net",
+                    "role": "Old Developer"
+                }
+            ],
+            "description": "Minimal routing library",
+            "homepage": "https://github.com/MythicalLTD/php-router",
+            "keywords": [
+                "route",
+                "router",
+                "routing"
+            ],
+            "support": {
+                "source": "https://github.com/MythicalLTD/php-router/tree/1.0.1"
+            },
+            "time": "2023-08-27T15:05:39+00:00"
+        },
         {
             "name": "symfony/deprecation-contracts",
             "version": "v3.3.0",

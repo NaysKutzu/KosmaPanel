@@ -1,10 +1,8 @@
 <?php
-// Routes for /auth
-use Kosma\Router;
+// Routes for base
 
-Router::get('', function() {  
-    require "../views/index.php"; 
-}); 
-
+$router->add('/', function () {
+    require("../views/index.php");
+});
 
 ?>

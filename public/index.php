@@ -3,26 +3,22 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require '../vendor/autoload.php';
+try {
+    if (file_exists('../vendor/autoload.php')) { 
+        require("../vendor/autoload.php");
+    } else {
+        die('Hello, it looks like you did not run:  "<code>composer install --no-dev --optimize-autoloader</code>". Please run that and refresh the page');
+    }
+} catch (Exception $e) {
+    die('Hello, it looks like you did not run:  <code>composer install --no-dev --optimize-autoloader</code> Please run that and refresh');
+}
 
-use Kosma\Router;
+$router = new \Router\Router();
 
-//Loading in the Routes with Prefixes
-Router::prefix('', function() {
-	require "../routes/base.php";
-});
+include(__DIR__."/../routes/base.php");
+include(__DIR__."/../routes/auth.php");
+include(__DIR__."/../routes/admin.php");
+include(__DIR__."/../routes/api.php");
 
-Router::prefix('auth/', function() {
-	require "../routes/auth.php";
-});
-
-Router::prefix('admin/', function() {
-	require "../routes/admin.php";
-});
-
-Router::prefix('api/', function() {
-	require "../routes/api.php";
-});
-
-Router::execute(__DIR__);  
+$router->route();  
 ?>
